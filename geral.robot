@@ -125,8 +125,8 @@ Caso negativo - realizar transação para conta inexistente
     Input Text    //*[@id="__next"]/div/div[3]/form/div[1]/div[1]/input    111
     Input Text    //*[@id="__next"]/div/div[3]/form/div[1]/div[2]/input    1
     Sleep    1
-    Input Text    //*[@id="__next"]/div/div[3]/form/div[2]/input    20
-    Input Text    //*[@id="__next"]/div/div[3]/form/div[3]/input    Enviando 20 reais para uma conta aleatoria
+    Input Text    //*[@id="__next"]/div/div[3]/form/div[2]/input    100
+    Input Text    //*[@id="__next"]/div/div[3]/form/div[3]/input    Enviando 100 reais para uma conta aleatoria
     Sleep    2
     Click Button    //*[@id="__next"]/div/div[3]/form/button
     Sleep    3
@@ -152,6 +152,23 @@ Caso negativo - enviar valor negativo para a conta B
 
     Visualizar estrato
 
+
+Caso negativo - enviar valor maior que o saldo para a conta B
+    Click Element    //*[@id="btn-TRANSFERÊNCIA"]
+    Sleep    1
+    Input Text    //*[@id="__next"]/div/div[3]/form/div[1]/div[1]/input    ${ACC_NUMBER_A}
+    Input Text    //*[@id="__next"]/div/div[3]/form/div[1]/div[2]/input    ${ACC_DIGIT_A}
+    Sleep    1
+    Input Text    //*[@id="__next"]/div/div[3]/form/div[2]/input    2000
+    Input Text    //*[@id="__next"]/div/div[3]/form/div[3]/input    Enviando 2000 reais para a conta B
+    Sleep    2
+    Click Button    //*[@id="__next"]/div/div[3]/form/button
+    Sleep    3
+    Click Element    xpath=//*[@id="btnCloseModal"]
+    Sleep    2
+    Click Element    //*[@id="btnBack"]
+
+    Visualizar estrato
 
 
 
