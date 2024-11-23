@@ -47,3 +47,19 @@ Fazer login
     Sleep    1
     Click Button    xpath=//button[text()='Acessar']
     Sleep    3
+
+Realizar transação
+    [Arguments]    ${ACC_NUMBER}    ${ACC_DIGIT}    ${VALUE}    ${MESSAGE}
+    Click Element    //*[@id="btn-TRANSFERÊNCIA"]
+    Sleep    1
+    Input Text    //*[@id="__next"]/div/div[3]/form/div[1]/div[1]/input    ${ACC_NUMBER}
+    Input Text    //*[@id="__next"]/div/div[3]/form/div[1]/div[2]/input    ${ACC_DIGIT}
+    Sleep    1
+    Input Text    //*[@id="__next"]/div/div[3]/form/div[2]/input    ${VALUE}
+    Input Text    //*[@id="__next"]/div/div[3]/form/div[3]/input   ${MESSAGE}
+    Sleep    2
+    Click Button    //*[@id="__next"]/div/div[3]/form/button
+    Sleep    3
+    Click Element    xpath=//*[@id="btnCloseModal"]
+    Sleep    2
+    Click Element    //*[@id="btnBack"]
