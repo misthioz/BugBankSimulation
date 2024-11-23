@@ -1,6 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    String
+Resource    keywords.robot
 
 *** Variables ***
 ${URL}    https://bugbank.netlify.app/
@@ -30,54 +31,14 @@ Visualizar estrato
 Registrar conta A
     Open Browser    url=${URL}    browser=chrome
     Maximize Browser Window
-    Click Button    xpath=//button[text()='Registrar']
-    
-    Input Text    xpath=//div[@class='card__register']//input[@name='email']    ${EMAIL_A}
 
-    Input Text    name=name    ${NAME_A}
-
-    Input Text    xpath=//div[@class='card__register']//input[@name='password']    ${PASSWORD}
-
-    Input Text    name=passwordConfirmation    ${PASSWORD}
-
-
-    Scroll Element Into View    id=toggleAddBalance
-    Click Element    xpath=//label[@id='toggleAddBalance']
-
-    Sleep    1
-
-    Click Button    xpath=//button[text()='Cadastrar']
-
-    Sleep    3
-
-    Click Element    xpath=//*[@id="btnCloseModal"]
-
+    Registrar conta    usernameA    myemailA@gmail.com    password
 
 Registrar conta B
-    Click Button    xpath=//button[text()='Registrar']
-    
-    Input Text    xpath=//div[@class='card__register']//input[@name='email']    ${EMAIL_B}
-
-    Input Text    name=name    ${NAME_B}
-
-    Input Text    xpath=//div[@class='card__register']//input[@name='password']    ${PASSWORD}
-
-    Input Text    name=passwordConfirmation    ${PASSWORD}
-
-    Sleep    1
-
-    Click Button    xpath=//button[text()='Cadastrar']
-
-    Sleep    3
-
-    Click Element    xpath=//*[@id="btnCloseModal"]
+    Registrar conta    usernameB    myemailB@gmail.com    password
 
 Logar usuario B
-    Input Text    name=email    ${EMAIL_B}
-    Input Password    name=password    ${PASSWORD}
-    Sleep    1
-    Click Button    xpath=//button[text()='Acessar']
-    Sleep    3
+    Fazer login    myemailB@gmail.com    password
 
 Copiar numero da conta B e sair
     ${ACC_FULLNUMER_A}=    Get Text    xpath=//p[@id='textAccountNumber']/span
@@ -95,11 +56,7 @@ Copiar numero da conta B e sair
 
 
 Logar na conta A
-    Input Text    //*[@id="__next"]/div/div[2]/div/div[1]/form/div[1]/input    ${EMAIL_A}
-    Input Password    name=password    ${PASSWORD}
-    Sleep    1
-    Click Button    xpath=//button[text()='Acessar']
-    Sleep    1
+    Fazer login    myemailA@gmail.com    password
     
 
 Caso positivo - realizar transação para conta B
